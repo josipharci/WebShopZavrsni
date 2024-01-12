@@ -1,4 +1,12 @@
-html {
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Lemon&display=swap');
+
+.lemon-regular {
+    font-family: "Lemon", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+html{
   font-size: 14px;
 }
 
@@ -15,4 +23,53 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+
+#first-box {
+    background-image: url(/img/car.jpg);
+    background-size: cover; 
+    background-position: center; 
+    height: 500px;
+    padding: 0;
+}
+
+#first-box-text {
+    margin: 0px;
+    height: 500px;
+    background-color: rgba(61, 59, 59,0.5);
+    padding-left: 10%;
+    padding-top: 7%;
+    color: #fff;
+}
+
+#first-box-text h2{
+   font-size: 3.5rem;
+}
+
+#first-box-text p{
+    font-size: 1.0rem;
+    margin-left: 5px;
+}
+
+#first-box-text a {
+   padding: 5px 40px;
+}
+
+#second-box {
+    margin: 0px;
+    height: 350px;
+}
+
+.box-icon{
+    font-size: 2.2rem;
+}
+
+#third-box {
+    margin: 0px;
+    height: 500px;
+    background: #08a0ff;
+}
+
+.item-front{
+    padding-top: 50px;
 }

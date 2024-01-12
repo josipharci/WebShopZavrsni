@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "psgnr1sKU+0Z3WSNwV1xkCBt+eo04SJkHqISsyC4mvA=",
+  "Hash": "dhMFh9oNB4l9iBlVda+r6L+DPRPk4V5LkvaMKcLgzKo=",
   "Source": "ZavrsniRadWebShop",
   "BasePath": "_content/ZavrsniRadWebShop",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\VisualStudio\\WebShopZavrsni\\ZavrsniRadWebShop\\wwwroot\\img\\car.jpg",
+      "SourceId": "ZavrsniRadWebShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VisualStudio\\WebShopZavrsni\\ZavrsniRadWebShop\\wwwroot\\",
+      "BasePath": "_content/ZavrsniRadWebShop",
+      "RelativePath": "img/car.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\car.jpg"
     },
     {
       "Identity": "D:\\VisualStudio\\WebShopZavrsni\\ZavrsniRadWebShop\\wwwroot\\js\\site.js",

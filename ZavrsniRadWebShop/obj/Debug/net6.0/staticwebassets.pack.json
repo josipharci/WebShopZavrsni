@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\VisualStudio\\WebShopZavrsni\\ZavrsniRadWebShop\\wwwroot\\img\\car.jpg",
+      "PackagePath": "staticwebassets\\img\\car.jpg"
+    },
+    {
       "Id": "D:\\VisualStudio\\WebShopZavrsni\\ZavrsniRadWebShop\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
