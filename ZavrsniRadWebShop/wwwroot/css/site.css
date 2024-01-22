@@ -29,16 +29,16 @@ body {
     background-image: url(/img/car.jpg);
     background-size: cover; 
     background-position: center; 
-    height: 500px;
+    height: 600px;
     padding: 0;
 }
 
 #first-box-text {
     margin: 0px;
-    height: 500px;
+    height: 600px;
     background-color: rgba(61, 59, 59,0.5);
     padding-left: 10%;
-    padding-top: 7%;
+    padding-top: 10%;
     color: #fff;
 }
 
@@ -57,7 +57,7 @@ body {
 
 #second-box {
     margin: 0px;
-    height: 350px;
+    height: 100px;
 }
 
 .box-icon{
@@ -66,10 +66,51 @@ body {
 
 #third-box {
     margin: 0px;
-    height: 500px;
-    background: #08a0ff;
+    margin-top: 100px;
+    height: 300px;
 }
 
 .item-front{
     padding-top: 50px;
+}
+
+.btn-custom-one{
+    background: #1a65ab;
+    padding: 5px 50px;
+    color: #fff; 
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration-line:none;
+}
+
+.btn-custom-one:hover {
+    background: #10416e;
+}
+
+#four-box {
+    margin: 0px;
+    margin-top: 100px;
+    height: 500px;
+    background: rgba(61, 59, 59,0.2);
+}
+
+.contact-us {
+    margin-top: 15px;
+    width: 600px;
+    height: 400px;
+    background: #fff;
+    border-radius: 5px;
+    padding:10px;
+}
+
+.img-sponsors{
+    width: 400px;
+    height: 250px;
+}
+
+.login-box{
+    height: 500px;
+    width: 400px;
+    padding: 15px;
 }
