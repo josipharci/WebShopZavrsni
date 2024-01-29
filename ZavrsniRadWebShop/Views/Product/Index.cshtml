@@ -1,0 +1,41 @@
+﻿@model List<Product> 
+<div class="container">
+<h1 class="text-center mt-5">Proizvodi</h1>
+</div>
+<div class="container ms-5">
+    <div class="col-3">
+        <form class="form-inline nav-search">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+    </form>
+    </div>
+</div>
+<div class="conainer m-5">
+    <div class="row">
+    @foreach (var product in Model)
+        {
+        <div class="col-2">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"> @product.Name</h5>
+                    <h4 class="card-title"> @product.Price €/Mj</h4>
+                    <p class="card-text">@product.Description</p>
+                        <a href="#" class="btn btn-primary"><i class="bi bi-basket"></i> Add to cart</a>
+                </div>
+            </div>
+        </div>
+        }
+</div>
+</div>
+<div class="container m-5">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+</div>
