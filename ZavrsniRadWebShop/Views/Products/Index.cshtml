@@ -1,0 +1,39 @@
+﻿
+<div class="container" style="height: auto;">
+ <h2>Products</h2>
+<form method="get" action="@Url.Action("Index")" class="mt-2">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search..." name="search">
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+    </div>
+</form>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    @foreach (var product in Model.Products)
+    {
+        <div class="col">
+            <div class="card">
+                    <img src="~/img/@product.ImagePath" class="card-img-top" alt="@product.Name">
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">@product.Description</p>
+                    <p class="card-text">Price: @product.Price €</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<nav aria-label="Page navigation mt-2">
+    <ul class="pagination">
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(Model.PageNumber == i ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+            </li>
+        }
+    </ul>
+</nav>
+
+</div>
