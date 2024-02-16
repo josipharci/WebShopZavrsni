@@ -60,12 +60,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/VisualStudio/WebShopZavrsni/ZavrsniRadWebShop/Views/Products/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcQ3JlYXRlLmNzaHRtbA==
+[D:/VisualStudio/WebShopZavrsni/ZavrsniRadWebShop/Views/Private/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpdmF0ZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/VisualStudio/WebShopZavrsni/ZavrsniRadWebShop/Views/Products/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRWRpdC5jc2h0bWw=
+[D:/VisualStudio/WebShopZavrsni/ZavrsniRadWebShop/Views/Private/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpdmF0ZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VisualStudio/WebShopZavrsni/ZavrsniRadWebShop/Views/Private/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpdmF0ZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/VisualStudio/WebShopZavrsni/ZavrsniRadWebShop/Views/Products/Index.cshtml]

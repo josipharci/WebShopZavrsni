@@ -1,22 +1,23 @@
-﻿
-<div class="container" style="height: auto;">
- <h2>Products</h2>
+﻿<div class="container">
+<h2 class="mt-2">Products</h2>
 <form method="get" action="@Url.Action("Index")" class="mt-2">
     <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Search..." name="search">
         <button class="btn btn-outline-secondary" type="submit">Search</button>
     </div>
 </form>
-
+</div>
+<div class="container table-responsive" style="height: 550px;">
 <div class="row row-cols-1 row-cols-md-4 g-4">
     @foreach (var product in Model.Products)
     {
         <div class="col">
             <div class="card">
-                    <img src="~/img/@product.ImagePath" class="card-img-top" alt="@product.Name">
+                    <img src="~/img/@product.ImagePath" class="card-img-top" alt="@product.Name" style="max-width: 100%; max-height: 200px;">
                 <div class="card-body">
                     <h5 class="card-title">@product.Name</h5>
                     <p class="card-text">@product.Description</p>
+                    <p class="card-text">Category: @product.Category.Name</p>
                     <p class="card-text">Price: @product.Price €</p>
                     <a href="#" class="btn btn-primary">Add to Cart</a>
                 </div>
@@ -24,7 +25,8 @@
         </div>
     }
 </div>
-
+</div>
+<div class="container mt-2">
 <nav aria-label="Page navigation mt-2">
     <ul class="pagination">
         @for (int i = 1; i <= Model.TotalPages; i++)
@@ -35,5 +37,4 @@
         }
     </ul>
 </nav>
-
 </div>

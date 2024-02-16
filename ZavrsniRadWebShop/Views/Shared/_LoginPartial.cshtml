@@ -6,6 +6,9 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
+        <a class="nav-link link-light" href="/Private/Index">Edit Store</a>
+    </li>
+    <li class="nav-item">
             <a class="nav-link link-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
     </li>
     <li class="nav-item">
@@ -13,6 +16,7 @@
                 <button type="submit" class="nav-link btn btn-link text-light">Logout</button>
         </form>
     </li>
+
 }
 else
 {
@@ -21,6 +25,6 @@ else
     </li>
     <li class="nav-item">
             <a class="nav-link link-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
+    </li>  
 }
 </ul>
