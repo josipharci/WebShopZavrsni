@@ -3,18 +3,21 @@ using ZavrsniRadWebShop.Data;
 
 namespace ZavrsniRadWebShop.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class OrdersController : ControllerBase
+    public class OrderController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public OrdersController(ApplicationDbContext context)
+        public OrderController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-       
-    }
+        public IActionResult Index()
+        {
+            var orders = _context.Orders.ToList();
+            return View(orders);
+        }
 
+        
+    }
 }
