@@ -1,5 +1,5 @@
 ﻿<div class="container">
-<h2 class="mt-2">Products</h2>
+    <h2 class="mt-2">Products <a href="/ShoppingCart/Index" class="btn btn-primary">Continue the order</a> </h2>
 <form method="get" action="@Url.Action("Index")" class="mt-2">
     <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Search..." name="search">
@@ -18,10 +18,11 @@
                     <h5 class="card-title">@product.Name</h5>
                     <p class="card-text">@product.Description</p>
                     <p class="card-text">Category: @product.Category.Name</p>
-                    <p class="card-text">Price: @product.Price €</p>
-                    <form method="post" action="@Url.Action("AddToCart", "Orders")">
+                    <h4 class="card-text">Price: @product.Price €</h4>
+                    <form asp-controller="ShoppingCart" asp-action="AddToCart" method="post">
                         <input type="hidden" name="productId" value="@product.Id" />
-                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        <input  type="number" name="quantity" value="1" min="1"  style="width:50px;"/> <span>Pcs</span><br>
+                            <button class="btn btn-primary mt-2" type="submit"><i class="bi bi-cart"></i> Add to Cart</button>
                     </form>
                 </div>
             </div>

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
 using ZavrsniRadWebShop.Models;
 using ZavrsniRadWebShop.Data;
 
@@ -24,12 +23,18 @@ namespace ZavrsniRadWebShop.Controllers
             var session = _httpContextAccessor.HttpContext.Session;
             var cartItemsJson = session.GetString("CartItems");
             var cartItems = string.IsNullOrEmpty(cartItemsJson)
-                ? new List<OrderItem>()
-                : JsonConvert.DeserializeObject<List<OrderItem>>(cartItemsJson);
-            return View(cartItems);
+                ? new List<CartItem>()
+                : JsonConvert.DeserializeObject<List<CartItem>>(cartItemsJson);
+
+            var shoppingCart = new ShoppingCart
+            {
+                Items = cartItems
+            };
+
+            return View(shoppingCart);
         }
 
-        public IActionResult AddToCart(int productId)
+        public IActionResult AddToCart(int productId, int quantity)
         {
             var product = _context.Products.FirstOrDefault(p => p.Id == productId);
             if (product == null)
@@ -40,28 +45,48 @@ namespace ZavrsniRadWebShop.Controllers
             var session = _httpContextAccessor.HttpContext.Session;
             var cartItemsJson = session.GetString("CartItems");
             var cartItems = string.IsNullOrEmpty(cartItemsJson)
-                ? new List<OrderItem>()
-                : JsonConvert.DeserializeObject<List<OrderItem>>(cartItemsJson);
+                ? new List<CartItem>()
+                : JsonConvert.DeserializeObject<List<CartItem>>(cartItemsJson);
 
-            var existingItem = cartItems.FirstOrDefault(item => item.ProductId == productId);
-            if (existingItem != null)
+            if (quantity < 1)
             {
-                existingItem.Quantity++;
+                quantity = 1;
             }
-            else
+
+            cartItems.Add(new CartItem
             {
-             
-                cartItems.Add(new OrderItem
-                {
-                    ProductId = productId,
-                    Quantity = 1,
-                    UnitPrice = (decimal)product.Price
+                ProductId = productId,
+                ProductName = product.Name, 
+                Quantity = quantity, 
+                UnitPrice = (decimal)product.Price
             });
-            }
 
             session.SetString("CartItems", JsonConvert.SerializeObject(cartItems));
 
+            return RedirectToAction("Index", "Products");
+        }
+
+        public IActionResult RemoveFromCart(int productId)
+        {
+            var session = _httpContextAccessor.HttpContext.Session;
+            var cartItemsJson = session.GetString("CartItems");
+            var cartItems = string.IsNullOrEmpty(cartItemsJson)
+                ? new List<CartItem>()
+                : JsonConvert.DeserializeObject<List<CartItem>>(cartItemsJson);
+
+            var itemToRemove = cartItems.FirstOrDefault(item => item.ProductId == productId);
+            if (itemToRemove != null)
+            {
+                cartItems.Remove(itemToRemove);
+                session.SetString("CartItems", JsonConvert.SerializeObject(cartItems));
+            }
+
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Checkout()
+        {
+            return View();
         }
     }
 }

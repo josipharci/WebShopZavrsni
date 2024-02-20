@@ -1,37 +1,43 @@
-﻿@model List<ZavrsniRadWebShop.Models.OrderItem>
+﻿@model ZavrsniRadWebShop.Models.ShoppingCart
 
 
-<div class="container">
-<h1>Shopping Cart</h1>
+<div class="container mt-2">
+    <h1>Shopping Cart</h1>
 
-@if (Model != null && Model.Any())
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Product Name</th>
-                <th>Quantity</th>
-                <th>Unit Price</th>
-                <th>Total Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    @if (Model != null && Model.Items.Any())
+    {
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@item.Product.Name</td>
-                    <td>@item.Quantity</td>
-                    <td>@item.UnitPrice</td>
-                    <td>@(item.Quantity * item.UnitPrice)</td>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total Price</th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>@item.ProductName</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.UnitPrice</td>
+                        <td>@(item.Quantity * item.UnitPrice)</td>
+                        <td>
+                        <form asp-action="RemoveFromCart" asp-route-productId="@item.ProductId" method="post">
+                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                        </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-    <a href="@Url.Action("Checkout", "ShoppingCart")" class="btn btn-primary">Proceed to Checkout</a>
-}
-else
-{
-    <p>Your shopping cart is empty.</p>
-}
+        <a href="@Url.Action("Checkout", "ShoppingCart")" class="btn btn-primary">Proceed to Checkout</a>
+    }
+    else
+    {
+        <p>Your shopping cart is empty.</p>
+    }
 </div>
