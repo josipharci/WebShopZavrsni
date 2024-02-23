@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace ZavrsniRadWebShop.Data.Migrations
+namespace ZavrsniRadWebShop.Migrations
 {
-    public partial class Frist : Migration
+    public partial class InitialCreate4 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

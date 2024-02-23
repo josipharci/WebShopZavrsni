@@ -9,11 +9,11 @@ using ZavrsniRadWebShop.Data;
 
 #nullable disable
 
-namespace ZavrsniRadWebShop.Data.Migrations
+namespace ZavrsniRadWebShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240219123758_Migracija")]
-    partial class Migracija
+    [Migration("20240221191509_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -251,6 +251,10 @@ namespace ZavrsniRadWebShop.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
@@ -258,11 +262,8 @@ namespace ZavrsniRadWebShop.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("TotalPrice")
+                    b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -282,6 +283,10 @@ namespace ZavrsniRadWebShop.Data.Migrations
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -387,8 +392,8 @@ namespace ZavrsniRadWebShop.Data.Migrations
 
             modelBuilder.Entity("ZavrsniRadWebShop.Models.OrderItem", b =>
                 {
-                    b.HasOne("ZavrsniRadWebShop.Models.Order", "Order")
-                        .WithMany()
+                    b.HasOne("ZavrsniRadWebShop.Models.Order", null)
+                        .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -398,8 +403,6 @@ namespace ZavrsniRadWebShop.Data.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Order");
 
                     b.Navigation("Product");
                 });
@@ -418,6 +421,11 @@ namespace ZavrsniRadWebShop.Data.Migrations
             modelBuilder.Entity("ZavrsniRadWebShop.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("ZavrsniRadWebShop.Models.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }

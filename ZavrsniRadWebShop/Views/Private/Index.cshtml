@@ -1,65 +1,121 @@
-﻿<div class="container mt-2">
-    <h3>Products</h3> 
-    <a href="@Url.Action("Create", "Private")" class="btn btn-primary mt-2"><i class="bi bi-bookmark-plus"></i> Add Product</a>
-    <div class="table-responsive border border-secondary mt-2" style="height:200px;">
-        <table class="table">
-            <thead style="position: sticky;top: 0" class="thead-dark">
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Category</th>
-                    <th>Edit</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var product in ViewBag.Products as List<Product>)
-                {
-                    <tr>
-                        <td><img src="~/img/@product.ImagePath" alt="@product.Name" style="max-width: 50px; max-height: 50px;" /></td>
-                        <td>@product.Name</td>
-                        <td>@product.Description</td>
-                        <td>@product.Price</td>
-                        <td>@product.Category.Name</td>
-                        <td>
-                            <a href="@Url.Action("Edit", "Private", new { id = product.Id })" class="btn btn-primary"><i class="bi bi-pencil-square"></i> Edit</a>
-                        </td>
-                        <td>
-                            <form asp-controller="Private" asp-action="Delete" method="post">
-                                <input type="hidden" name="id" value="@product.Id" />
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this product?')"><i class="bi bi-trash3"></i> Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <h3 class="mt-2">Categories</h3>
-    <a href="@Url.Action("Create", "Categories")" class="btn btn-primary mt-2"><i class="bi bi-bookmark-plus"></i> Add Category</a>
-    <div class="table-responsive border border-secondary mt-2" style="height:200px;">
-        <table class="table">
-            <thead style="position: sticky;top: 0" class="thead-dark">
-                <tr>
-                    <th>Name</th>
-                    <th>Edit</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var category in ViewBag.Categories as List<Category>)
-                {
-                    <tr>
-                        <td>@category.Name</td>
-                        <td>
-                            <form asp-controller="Categories" asp-action="Delete" method="post">
-                                <input type="hidden" name="id" value="@category.Id" />
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this category?')"><i class="bi bi-trash3"></i> Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</div>
+﻿<div class="container-fluid mt-2 table-responsive" style="height:800px;">
+    <div class="row">
+        <div class="col">
+            <h3 class="mt-2">Products</h3>
+            <a href="@Url.Action("Create", "Private")" class="btn btn-primary mt-2"><i class="bi bi-bookmark-plus"></i> Add Product</a>
+            <div class="table-responsive border border-secondary mt-2" style="height:200px;">
+                <table class="table">
+                    <thead style="position: sticky;top: 0" class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in ViewBag.Products as List<Product>)
+                        {
+                            <tr>
+                                <td><img src="~/img/@product.ImagePath" alt="@product.Name" style="max-width: 50px; max-height: 50px;" /></td>
+                                <td>@product.Name</td>
+                                <td>@product.Description</td>
+                                <td>@product.Price <span>€</span></td>
+                                <td>@product.Category.Name</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "Private", new { id = product.Id })" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                                </td>
+                                <td>
+                                    <form asp-controller="Private" asp-action="Delete" method="post">
+                                        <input type="hidden" name="id" value="@product.Id" />
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this product?')"><i class="bi bi-trash3"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+         <div class="col">
+            <h3 class="mt-2">Categories</h3>
+            <a href="@Url.Action("Create", "Categories")" class="btn btn-primary mt-2"><i class="bi bi-bookmark-plus"></i> Add Category</a>
+            <div class="table-responsive border border-secondary mt-2" style="height:200px;">
+                <table class="table">
+                    <thead style="position: sticky;top: 0" class="thead-dark">
+                        <tr>
+                            <th>Category Name</th>
+                            <th></th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var category in ViewBag.Categories as List<Category>)
+                        {
+                            <tr>
+                                <td>@category.Name</td>
+                                <td></td>
+                                <td>
+                                    <form asp-controller="Categories" asp-action="Delete" method="post">
+                                        <input type="hidden" name="id" value="@category.Id" />
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this category?')"><i class="bi bi-trash3"></i> Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col">
+            <h3 class="mt-2">Order</h3>
+            <br />
+            <br />
+            <div class="table-responsive border border-secondary mt-2" style="height:200px;">
+                <table class="table">
+                    <thead style="position: sticky;top: 0" class="thead-dark">
+                        <tr>
+                            <th>Nub</th>
+                            <th>Customer</th>
+                            <th>Order Date</th>
+                            <th>Status</th>
+                            <th>Total €</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in ViewBag.Order as List<Order>)
+                        {
+                            <tr>
+                                <td>@order.Id</td>
+                                <td>@order.CustomerName</td>
+                                <td>@order.OrderDate</td>
+                                <td>@order.Status</td>
+                                <td>@order.TotalAmount<span>€</span></td>
+                                <td>
+                                    <a href="@Url.Action("EditOrder", "Private", new { id = order.Id })" class="btn btn-primary">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <form asp-controller="Private" asp-action="DeleteOrder" method="post">
+                                        <input type="hidden" name="id" value="@order.Id" />
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this order?')">
+                                            <i class="bi bi-trash3"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+      </div>
+ </div>
+    
+    
+   
+  

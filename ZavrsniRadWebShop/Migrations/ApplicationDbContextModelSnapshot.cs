@@ -3,19 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZavrsniRadWebShop.Data;
 
 #nullable disable
 
-namespace ZavrsniRadWebShop.Data.Migrations
+namespace ZavrsniRadWebShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240220113607_migration3")]
-    partial class migration3
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -251,8 +249,9 @@ namespace ZavrsniRadWebShop.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CustomerName")
-                        .HasColumnType("int");
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
@@ -269,7 +268,7 @@ namespace ZavrsniRadWebShop.Data.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("ZavrsniRadWebShop.Models.OrderItem", b =>
+            modelBuilder.Entity("ZavrsniRadWebShop.Models.OrderItems", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -283,6 +282,10 @@ namespace ZavrsniRadWebShop.Data.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -290,6 +293,8 @@ namespace ZavrsniRadWebShop.Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
 
@@ -383,8 +388,14 @@ namespace ZavrsniRadWebShop.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ZavrsniRadWebShop.Models.OrderItem", b =>
+            modelBuilder.Entity("ZavrsniRadWebShop.Models.OrderItems", b =>
                 {
+                    b.HasOne("ZavrsniRadWebShop.Models.Order", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ZavrsniRadWebShop.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
@@ -408,6 +419,11 @@ namespace ZavrsniRadWebShop.Data.Migrations
             modelBuilder.Entity("ZavrsniRadWebShop.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("ZavrsniRadWebShop.Models.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,6 +2,14 @@
 
 namespace ZavrsniRadWebShop.Models
 {
+    public class ShoppingCartViewModel
+    {
+        public List<CartItem> CartItems { get; set; }
+        public decimal TotalPrice { get; set; }
+        public DateTime OrderDate { get; set; }
+        public List<OrderItems> OrderItems { get; set; }
+    }
+
     public class ShoppingCart
     {
         public List<CartItem> Items { get; set; }

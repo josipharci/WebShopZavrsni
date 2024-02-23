@@ -1,0 +1,46 @@
+﻿@model ZavrsniRadWebShop.Models.Order
+
+<div class="container mt-2">
+    <h1>Edit Order</h1>
+
+    <form asp-action="EditOrder" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label for="CustomerName">Customer Name:</label>
+            <input type="text" class="form-control" id="CustomerName" name="CustomerName" asp-for="CustomerName" required>
+        </div>
+        <div class="form-group">
+            <label for="TotalAmount">Total Amount:</label>
+            <input type="text" class="form-control" id="TotalAmount" name="TotalAmount" asp-for="TotalAmount" required>
+        </div>
+        <div class="form-group">
+            <label for="Status">Status:</label>
+            <input type="text" class="form-control" id="Status" name="Status" asp-for="Status" required>
+        </div>
+        <div class="form-group">
+            <label for="OrderDate">Order Date:</label>
+            <input type="datetime-local" class="form-control" id="OrderDate" name="OrderDate" asp-for="OrderDate" required>
+        </div>
+        <h2>Products in Order:</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderItems)
+                {
+                    <tr>
+                        <td>@item.Product.Name</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.UnitPrice</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

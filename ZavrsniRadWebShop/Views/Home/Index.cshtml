@@ -1,6 +1,4 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿
 
 <div class="container-fluid" id="first-box">
     <div class="container-fluid lemon-regular" id="first-box-text">
@@ -8,7 +6,7 @@
         <p>
             Welcome to the car detailing website.<br /> We offer a large number of services and products
         </p>
-        <a class="btn btn-primary" href="">Shop</a>
+        <a class="btn btn-primary" asp-area="" asp-controller="Products" asp-action="Index" asp-area="" asp-controller="Products" asp-action="Index">Shop</a>
     </div>
 </div>
 <div class="container-fluid d-flex align-items-center justify-content-center" id="second-box">
@@ -23,7 +21,7 @@
                 </div>
                 <div class="card-footer border" style="height:85px;">
                     <br />
-                    <a href="#" class="btn-custom-one">Contact Us</a>
+                    <a href="#scrollspyHeading1" class="btn-custom-one">Contact Us</a>
                 </div>
             </div>
          </div>
@@ -37,7 +35,7 @@
                 </div>
                 <div class="card-footer border" style="height:85px">
                     <br />
-                    <a href="#" class="btn-custom-one" style="margin-top:5px;">To Order</a>
+                    <a href="#scrollspyHeading1" class="btn-custom-one" style="margin-top:5px;">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -51,7 +49,7 @@
                 </div>
                 <div class="card-footer border" style="height:85px">
                     <br />
-                    <a href="#" class="btn-custom-one" style="margin-top:5px;">Shop</a>
+                    <a asp-area="" asp-controller="Products" asp-action="Index" asp-area="" asp-controller="Products" asp-action="Index" class="btn-custom-one" style="margin-top:5px;">Shop</a>
                 </div>
             </div>
         </div>
@@ -77,7 +75,7 @@
 <div class="container-fluid  d-flex justify-content-center" id="four-box">
     <div class="contact-us">
         <form>
-            <h2 class="lemon-regular text-center mb-2">Contact us</h2>
+            <h2 class="lemon-regular text-center mb-2" id="scrollspyHeading1">Contact us</h2>
             <div class="form-group mb-2">
                 <label for="exampleFormControlInput1">Email address</label>
                 <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">

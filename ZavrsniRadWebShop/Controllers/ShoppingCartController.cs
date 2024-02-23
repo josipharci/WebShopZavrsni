@@ -86,7 +86,27 @@ namespace ZavrsniRadWebShop.Controllers
 
         public IActionResult Checkout()
         {
-            return View();
+            var session = _httpContextAccessor.HttpContext.Session;
+            var cartItemsJson = session.GetString("CartItems");
+            var cartItems = string.IsNullOrEmpty(cartItemsJson)
+                ? new List<CartItem>()
+                : JsonConvert.DeserializeObject<List<CartItem>>(cartItemsJson);
+
+            var totalPrice = cartItems.Sum(item => item.Quantity * item.UnitPrice);
+
+            var orderItems = _context.OrderItems
+                .Where(item => cartItems.Select(cartItem => cartItem.ProductId).Contains(item.ProductId))
+                .ToList();
+
+            var viewModel = new ShoppingCartViewModel
+            {
+                CartItems = cartItems,
+                TotalPrice = totalPrice,
+                OrderDate = DateTime.Now,
+                OrderItems = orderItems  
+            };
+
+            return View(viewModel);
         }
     }
 }

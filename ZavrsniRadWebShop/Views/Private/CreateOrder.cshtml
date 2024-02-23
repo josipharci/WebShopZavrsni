@@ -1,0 +1,33 @@
+﻿@model ZavrsniRadWebShop.Models.Order
+
+<div class="container mt-2">
+    <h1> Order</h1>
+    <form asp-action="AddToOrder" method="post">
+        <div class="form-group">
+            <label for="CustomerName">Customer Name:</label>
+            <input type="text" class="form-control" id="CustomerName" name="CustomerName" required>
+        </div>
+        <div class="form-group">
+            <label for="OrderDate">Order Date:</label>
+            <input type="datetime-local" class="form-control" id="OrderDate" name="OrderDate" required>
+        </div>
+        <div class="form-group">
+            <label for="Status">Status:</label>
+            <input type="text" class="form-control" id="Status" name="Status" required>
+        </div>
+        <div class="form-group">
+            <label for="totalAmount">Total Amount:</label>
+            <input type="number" id="totalAmount" name="TotalAmount" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="OrderItems">Select Products:</label>
+            <select class="form-control" id="OrderItems" name="OrderItems">
+                @foreach (var product in ViewBag.Products)
+                {
+                    <option value="@product.Id">@product.Name - Price: @product.Price</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Products to Order</button>
+    </form>
+</div>

@@ -22,8 +22,8 @@
                     <tr>
                         <td>@item.ProductName</td>
                         <td>@item.Quantity</td>
-                        <td>@item.UnitPrice</td>
-                        <td>@(item.Quantity * item.UnitPrice)</td>
+                        <td>@item.UnitPrice<span>€</span></td>
+                        <td>@(item.Quantity * item.UnitPrice)<span>€</span></td>
                         <td>
                         <form asp-action="RemoveFromCart" asp-route-productId="@item.ProductId" method="post">
                             <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>

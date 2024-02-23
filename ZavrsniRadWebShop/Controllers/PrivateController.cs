@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ZavrsniRadWebShop.Data;
 using ZavrsniRadWebShop.Models;
+using static NuGet.Packaging.PackagingConstants;
 
 namespace ZavrsniRadWebShop.Controllers
 {
@@ -28,6 +29,7 @@ namespace ZavrsniRadWebShop.Controllers
         {
             ViewBag.Products = _context.Products.Include(p => p.Category).ToList(); 
             ViewBag.Categories = _context.Categories.ToList();
+            ViewBag.Order = _context.Orders.ToList();
             return View();
         }
 
@@ -152,5 +154,102 @@ namespace ZavrsniRadWebShop.Controllers
 
             return RedirectToAction("Index", "Private");
         }
+
+        public IActionResult CreateOrder()
+        {
+            ViewBag.Products = _context.Products.ToList();
+            return View();
+        }
+
+        
+        [HttpPost]
+        public IActionResult CreateOrder(Order order)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Orders.Add(order);
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Private");
+            }
+            return View(order);
+        }
+
+
+        public IActionResult EditOrder(int id)
+        {
+            var order = _context.Orders
+                .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.Product)
+                .FirstOrDefault(o => o.Id == id);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            return View(order);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditOrder(int id, Order order)
+        {
+            if (id != order.Id)
+            {
+                return NotFound();
+            }
+
+        
+                try
+                {
+                    _context.Update(order);
+                    _context.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!OrderExists(order.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction("Index", "Private");
+        
+        }
+
+
+        public IActionResult DeleteOrder(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var order = _context.Orders.Find(id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            return View(order);
+        }
+
+        [HttpPost, ActionName("DeleteOrder")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var order = _context.Orders.Find(id);
+            _context.Orders.Remove(order);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Private");
+        }
+
+        private bool OrderExists(int id)
+        {
+            return _context.Orders.Any(e => e.Id == id);
+        }
     }
 }
+

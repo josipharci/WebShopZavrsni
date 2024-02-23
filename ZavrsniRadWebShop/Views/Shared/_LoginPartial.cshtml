@@ -5,9 +5,12 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a class="nav-link link-light" href="/Private/Index">Edit Store</a>
-    </li>    
+    @if (UserManager.GetUserName(User) == "harcijosip99@gmail.com")
+    {
+        <li class="nav-item">
+            <a class="nav-link link-light" href="/Private/Index">Edit Store</a>
+        </li>
+    }
     <li class="nav-item">
             <a class="nav-link link-light" href="/ShoppingCart/Index"><i class="bi bi-cart"></i></a>
     </li>
